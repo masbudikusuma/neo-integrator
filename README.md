@@ -1,4 +1,5 @@
 # Neo-Integrator
+Capture : https://github.com/masbudikusuma/neo-integrator/blob/master/capture.png
 Requirement:
 - Versi PHP 7.x atau lebih tinggi
 - MySQL 5.7 / MariaDB 10.x atau yang lebih tinggi
