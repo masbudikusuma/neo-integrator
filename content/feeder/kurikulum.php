@@ -8,7 +8,7 @@ $jumlah = mysqli_query($db, $jumlah);
 $x = mysqli_fetch_array($jumlah);
 $total = $x['jumlah'];
 
-$sync = $weburl.'app/exec.php?act='.$exec;
+$sync = $weburl.'/exec.php?act='.$exec;
 ?>
 <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
 <div class="content-wrapper container">

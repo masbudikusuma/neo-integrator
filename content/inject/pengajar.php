@@ -1,5 +1,5 @@
 <?php
-$sync = $weburl.'app/exec.php?act=insertPengajarKelas&tipe=minim'; //cek di exec.php dan ws/insertMataKuliah
+$sync = $weburl.'/exec.php?act=insertPengajarKelas&tipe=minim'; //cek di exec.php dan ws/insertMataKuliah
 ?>
 
 <ul class="pagination pagination-primary  justify-content-center">                      

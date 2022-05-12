@@ -21,7 +21,7 @@ $table = array(
   array("getmahasiswalulusdo","GetDetailMahasiswaLulusDO","tidak wajib",""));
 
 for ($i=0;$i<=11;$i++){
-  $sync = $weburl.'app/exec.php?act='.$table[$i][3];
+  $sync = $weburl.'/exec.php?act='.$table[$i][3];
    
   echo "data " . $table[$i][1];
   $query = "SELECT COUNT(id) as jumlah from  ".$table[$i][0];

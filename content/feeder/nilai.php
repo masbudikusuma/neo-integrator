@@ -14,7 +14,7 @@ $total = $x['jumlah'];
 //         $neofeeder = $neofeeder[1]["data"];
 // DI NON AKTIFKAN KARENA MEMAKAN WAKTU
 $neofeeder = "coming soon";
-$sync = $weburl.'app/exec.php?act='.$exec;
+$sync = $weburl.'/exec.php?act='.$exec;
        
 ?>
 

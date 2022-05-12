@@ -13,7 +13,7 @@ $total = $x['jumlah'];
 //         $neofeeder = $neofeeder[1]["data"];
         $neofeeder = "coming soon";
         
-$sync = $weburl.'app/exec.php?act='.$exec;
+$sync = $weburl.'/exec.php?act='.$exec;
        
 ?>
 <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">

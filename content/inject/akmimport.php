@@ -1,5 +1,5 @@
 <?php
-$sync = $weburl.'app/exec.php?act=insertAKM&tipe=minim'; //cek di exec.php dan ws/insertAKM
+$sync = $weburl.'/exec.php?act=insertAKM&tipe=minim'; //cek di exec.php dan ws/insertAKM
 ?>
 
 <ul class="pagination pagination-primary  justify-content-center">                      

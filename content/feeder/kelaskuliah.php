@@ -13,7 +13,7 @@ $total = $x['jumlah'];
 //         $neofeeder = $ws->run($neofeeder);
 //         $neofeeder = $neofeeder[1]["data"];
 $neofeeder = "coming soon";
-$sync = $weburl.'app/exec.php?act='.$exec;
+$sync = $weburl.'/exec.php?act='.$exec;
        
 ?>
 

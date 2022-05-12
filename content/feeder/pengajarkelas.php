@@ -12,7 +12,7 @@ $neofeeder = $ws->prep_get($countneofeedermethod);
         $neofeeder = $ws->run($neofeeder);
         $neofeeder = $neofeeder[1]["data"];
         
-$sync = $weburl.'app/exec.php?act='.$exec;
+$sync = $weburl.'/exec.php?act='.$exec;
        
 ?>
 <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
