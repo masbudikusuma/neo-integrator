@@ -38,9 +38,4 @@ View :
 - Jumlah Dosen
 - Rekap AKM/Dosen (Monitoring AKM/Dosen tiap Semester dan Prodi)
 
-<a href="https://www.nihbuatjajan.com/neoin"><h4>Support US </h4></a>
-<a href="https://t.me/+0VWcv9E-Kc82NjNl"><h4>telegram Group </h4></a>
-
-
-
-
+<a href="https://www.nihbuatjajan.com/neoin"><h4>Support US </h4></a><a href="https://t.me/+0VWcv9E-Kc82NjNl"><h4>telegram Group </h4></a>
