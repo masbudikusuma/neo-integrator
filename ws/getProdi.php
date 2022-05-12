@@ -9,7 +9,7 @@ $request = $ws->prep_get($act,$filter,$limit,$order);
 
 $kosongkantabel = "TRUNCATE getprodi;";
 mysqli_query($db ,$kosongkantabel);
-
+$no = 0 ;
 if ($ws_result[1]["error_code"] == 0) {
 			foreach ($ws_result as $key){
 				if (is_array($key)){
@@ -28,6 +28,7 @@ $inserdb = "INSERT INTO getprodi
 ('$id_prodi', '$kode_program_studi', '$nama_program_studi', '$status', '$id_jenjang_pendidikan', '$nama_jenjang_pendidikan');
 ";								
 echo ".";
+$no++;
 mysqli_query($db ,$inserdb) or die(mysqli_error($db));
 
 							}
