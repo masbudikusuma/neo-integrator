@@ -1,4 +1,6 @@
 # Neo-Integrator
+Penerus dari SimpleFeeder, yang berubah jadi Excel2Feeder dan bertransformasi menjadi Neo-integrator
+
 Capture : https://github.com/masbudikusuma/neo-integrator/blob/master/capture.png
 Requirement:
 - Versi PHP 7.x atau lebih tinggi
