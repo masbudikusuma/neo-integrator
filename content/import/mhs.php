@@ -123,7 +123,7 @@ EKA MASKANAH	1903018025	193c58aa-1c37-4e04-a7c8-c37e81f2c21f	2019-09-02	20191	1	
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                            <a href="#"><button type="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">
+                                                                <a href="assets/mahasiswa.xlsx"><button type="submit" class="btn btn-primary ml-1" >
                                                                 <span class="d-none d-sm-block">Download Excel</span>
                                                                 </button></a>
                                                                 <a href="#"><button type="submit" class="btn btn-success ml-1" data-bs-dismiss="modal">
