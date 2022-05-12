@@ -5,13 +5,13 @@
 // ob_end_flush();
 // ob_implicit_flush();
 
-$filter = "ipk='0' and id_prodi='1420f306-fb72-48ce-9a60-d1a9fa0f29bd'";
-$limit = 1000;
+$filter = "";
+$limit = 10000;
 $order = 0;$no = 0;
 $act = "GetListPerkuliahanMahasiswa";
 $request = $ws->prep_get($act,$filter,$limit,$order);
 			$ws_result = $ws->run($request);
-			$ws->view($ws_result);
+			// $ws->view($ws_result);
 
 $kosongkantabel = "TRUNCATE getAKM;";
 mysqli_query($db ,$kosongkantabel);
@@ -66,8 +66,8 @@ print_r($progress);
 }}
 
 
-
-
-
+echo $no." record";
+$status =  "Get Data Terakhir Selesai";
+progress($status,$act);
 
 ?>

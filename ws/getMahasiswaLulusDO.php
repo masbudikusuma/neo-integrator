@@ -1,7 +1,7 @@
 <?php
 
 $filter = "";
-$limit = 10000;
+$limit = "";
 $order = 0;
 $act = 'GetDetailMahasiswaLulusDO';
 $request = $ws->prep_get($act,$filter,$limit,$order);

@@ -1,6 +1,6 @@
 <?php
 $filter = "";
-$limit = "1000";
+$limit = "10000";
 $order = 0;
 $act = 'GetPesertaKelasKuliah';
 $request = $ws->prep_get($act,$filter,$limit,$order);
