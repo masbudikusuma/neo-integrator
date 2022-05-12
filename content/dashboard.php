@@ -229,6 +229,7 @@
                                 echo "
                     <tr><td> Nama Aplikasi  </td><td>".$system_desc."</br></td></tr>
                     <tr><td> Versi Aplikasi  </td><td>".$system_version."</br></td></tr>
+                    <tr><td> Telegram Group        </td><td><a href='https://t.me/+0VWcv9E-Kc82NjNl'>Link</a></td></tr>
                     <tr><td> GitHub        </td><td><a href='https://github.com/masbudikusuma/Neo-Integrator'>Link</a></td></tr>
                     <tr><td> Support Us</td><td><a href='https://www.nihbuatjajan.com/neoin'>Link</a></td></tr>";     
                                 ?>
