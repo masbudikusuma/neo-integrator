@@ -2,8 +2,9 @@
 
 include_once 'component/version.php';
 
-// Diisi alamat Servernya, Semisal menggunakan IP berarti diisi http://192.168.1.1/
-$weburl = "";
+$rootPath = $_SERVER['DOCUMENT_ROOT'];
+$thisPath = dirname($_SERVER['PHP_SELF']);
+$weburl = str_replace($rootPath, '', $thisPath);
   
 // Konfigurasi Database Neo Integrator 
 $db_server   = "";
