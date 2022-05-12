@@ -1,7 +1,9 @@
 <?php
 
 include_once 'component/version.php';
-$weburl = "http://neo-in/neo-in/";
+
+// Diisi alamat Servernya, Semisal menggunakan IP berarti diisi http://192.168.1.1/
+$weburl = "";
   
 // Konfigurasi Database Neo Integrator 
 $db_server   = "";
