@@ -416,7 +416,7 @@ function caribiomhs(&$nim,&$nama,&$jk,&$tl,&$prodi,&$status){
                 $status = $ws_result[1]["data"][0]["nama_status_mahasiswa"];	
                 $prodi = $ws_result[1]["data"][0]["nama_program_studi"];	
                 $jk = $ws_result[1]["data"][0]["jenis_kelamin"];	
-                if($jk=='P'){$jk='Perempuan';}else if($jk=='L'){$jk='Perempuan';}else{$jk='TIDAK DIKENALI';}
+                if($jk=='P'){$jk='Perempuan';}else if($jk=='L'){$jk='Laki-Laki';}else{$jk='TIDAK DIKENALI';}
                 $tl = $ws_result[1]["data"][0]["tanggal_lahir"];	
                 $nama = $ws_result[1]["data"][0]["nama_mahasiswa"];	
                 } else {
