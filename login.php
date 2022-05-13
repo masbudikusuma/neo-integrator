@@ -1,4 +1,12 @@
-<?php include_once 'component/config.php'; ?>
+<?php 
+if(file_exists('component/config.php')){
+include_once 'component/config.php'; }
+else {
+    echo "File Config Belum ada, Silahkan Lihat Dokumentasi di <a href='https://github.com/masbudikusuma/neo-integrator'>GITHUB</a>";
+    $system_desc = "Neo_integrator";
+    $userfeeder=="";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +39,8 @@
                 <?php 
                 if ($userfeeder==""){
                     echo "anda belum melakukan pengaturan di config.php";
-                    echo '<p class="text-gray-600"><a href="auth-register.html" class="font-bold">Lihat Dokumentasi</a>.</p>';
+                    echo '<p class="text-gray-600"><a href="https://github.com/masbudikusuma/neo-integrator" class="font-bold">Lihat Dokumentasi</a>.</p>';
+                    echo '<p class="text-gray-600"><a href="https://t.me/+0VWcv9E-Kc82NjNl" class="font-bold">Group Telegram</a>.</p>';
                 }else {
                     echo '
                     <form action="authcek.php" method="post">
