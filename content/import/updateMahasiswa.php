@@ -310,7 +310,7 @@ mysqli_query($db, $insert);
                     <h5 class="modal-title white" id="myModalLabel110">  KONFIRMASI  </h5>
                     </div>
                     <div class="modal-body">
-                    <center>Anda Yakin Ingin Memproses Mahasiswa Keluar Sejumlah <br>
+                    <center>Anda Yakin Ingin Memproses Data Update Mahasiswa Sejumlah <br>
                         <h5 class="modal-title black" id="myModalLabel110">' . $no . ' RECORD</center></h5>
                     </div>
                     <div class="modal-footer">

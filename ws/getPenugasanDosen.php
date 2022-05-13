@@ -5,7 +5,7 @@ $limit = "";
 $no = 0;
 $request = $ws->prep_get($act,"",$limit,0);
 			$ws_result = $ws->run($request);
-			$ws->view($ws_result);
+			// $ws->view($ws_result);
 
 			$kosongkantabel = "TRUNCATE getPenugasanDosen;";
 			mysqli_query($db ,$kosongkantabel);
