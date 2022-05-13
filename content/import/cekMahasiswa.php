@@ -5,7 +5,7 @@ $table = "cekmahasiswa";
 $link1 = $_SERVER['PHP_SELF'] . '?module='.$module.'&aksi=tambah'; //tambah data
 $link2 = "index.php?module=inject&act=".$module; //Lihat Data / Lanjutkan Sync
 $link3 = $_SERVER['PHP_SELF'] . '?module='.$module.'&aksi=cancel'; // Kosongkan Data / Cancel
-$link4 = $_SERVER['PHP_SELF'] . '?module=inject&act='.$module ; // PAGE SYNCRON KE FEEDER
+$link4 = $_SERVER['PHP_SELF'] . '?module=inject&act='.$module.'&show=no' ; // PAGE SYNCRON KE FEEDER
 // $link4 = $_SERVER['PHP_SELF'] . '?module='.$module.'&aksi=tambah'; //Submit Inputan
 // ACT DETECT
 if (isset($_GET['aksi']))
