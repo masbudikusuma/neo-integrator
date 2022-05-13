@@ -15,6 +15,8 @@ Instalasi :
 - Rename component/config-sample.php menjadi component/config.php
 - sesuaikan component/config.php dengan user pddikti dan database
 
+youtube : https://www.youtube.com/watch?v=aKdne-7jot8
+
 Fitur Release 12 Mei 2022 :
 
 Import Data :
