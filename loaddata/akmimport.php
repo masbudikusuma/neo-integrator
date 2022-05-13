@@ -78,14 +78,14 @@
                                     $query = "select * from ".$namatable." where err_no!='0' and err_no is not null";
                                     $hasil = mysqli_query($db, $query);
                                     if(mysqli_num_rows($hasil) > 0 ){
-                                    echo "<table class='table table-striped'  border='1'><tr>
-                                    <th>Baris</th><th>NIM</th><th>NAMA</th><th>ID Keluar</th><th>No Ijazah</th>
-                                    <th>Error</th><th>Description</th></tr>";
+                                      echo "<table class='table table-striped'  border='1'><tr>
+                                      <th>Baris</th><th>NIM</th><th>NAMA</th><th>Status</th><th>Semester</th><th>biaya</th><th>SKS S</th><th>SKS K</th><th>IP S</th><th>IP K</th>
+                                      <th>Error</th><th>Description</th></tr>";
                                     while($x = mysqli_fetch_array($hasil)){
                                     // $jum
                                     echo "<tr><td>" . $no++;
                                     echo "</td><td>" . $x['nim'];echo "</td><td>" . $x['nama_mahasiswa'];
-                                    echo "</td><td>" . $x['id_status_mahasiswa'];echo "</td><td>" . $x['biaya_kuliah_smt'];
+                                    echo "</td><td>" . $x['id_status_mahasiswa'];echo "</td><td>". $x['id_semester']."</td><td>" . $x['biaya_kuliah_smt'];
                                     echo "</td><td>" . $x['sks_semester'];echo "</td><td>" . $x['total_sks'];
                                     echo "</td><td>" . $x['ips'];echo "</td><td>" . $x['ipk'];
                                     echo "</td><td>" . $x['err_no'];echo "</td><td><code>" . $x['err_desc'] . "</code></td></tr>";
