@@ -4,7 +4,7 @@ include_once 'component/config.php'; }
 else {
     echo "File Config Belum ada, Silahkan Lihat Dokumentasi di <a href='https://github.com/masbudikusuma/neo-integrator'>GITHUB</a>";
     $system_desc = "Neo_integrator";
-    $userfeeder=="";
+    $userfeeder = "";
 }
 ?>
 <!DOCTYPE html>
