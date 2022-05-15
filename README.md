@@ -1,6 +1,8 @@
 # Neo-Integrator
 Penerus dari SimpleFeeder, yang berubah jadi Excel2Feeder dan bertransformasi menjadi Neo-integrator
 
+Last Update : 16-05-2022
+
 Capture : https://github.com/masbudikusuma/neo-integrator/blob/master/capture.png
 Requirement:
 - Versi PHP 7.x atau lebih tinggi
@@ -16,6 +18,7 @@ Instalasi :
 - sesuaikan component/config.php dengan user pddikti dan database
 
 youtube : https://www.youtube.com/watch?v=aKdne-7jot8
+
 
 Fitur Release 12 Mei 2022 :
 
