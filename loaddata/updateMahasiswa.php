@@ -1,7 +1,7 @@
 <?php
           $show = $_POST['show'];
           $namatable = "updatemahasiswa";
-          $act="mkimport";
+          $act="updateMahasiswa";
           $berhasil=$belum=$sudahada=$gagal=0;
           $query = "select * from progress where act='InsertPerkuliahanMahasiswa'";
           $log = mysqli_query($db, $query);
