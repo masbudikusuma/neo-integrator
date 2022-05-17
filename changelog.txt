@@ -1,0 +1,10 @@
+17-05-2022 :
+- update function 
+- update petunjuk pengisian Nilai Kelas
+- create changelog.txt
+
+16-05-2022:
+- Fix Bug Import Mahasiswa
+
+12-05-2022:
+- Relase Neo Feeder
