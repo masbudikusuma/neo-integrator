@@ -81,11 +81,11 @@ while($x = mysqli_fetch_array($hasil)){
                                                                 <div class="card">
                                                                     <div class="card-header">
                                                     <table class='table table-striped' id='table1' border='1'>
-<tr><th>nim</th><th>Kode_MK</th><th>Kode_Kelas</th><th>Semester</th><th>nilai_angka</th><th>nilai_indeks</th><th>nilai_huruf</th></tr>
+<tr><th>nim</th><th>Kode_MK</th><th>Semester</th><th>Kode_Kelas</th><th>nilai_angka</th><th>nilai_indeks</th><th>nilai_huruf</th></tr>
                                     <tr><td><dd class="text-sm word-wrap">Nomor Induk Mahasiswa</dd>                                    </td>
                                     <td><dd class="text-sm word-wrap">Kode Mata Kuliah</dd><br><a href='?module=feedmk' target="_blank" >Kode MK</a></td>
-                                    <td><pre>Kode Kelas Kuliah<br>max 5 Digit<br><br><a href='?module=feedkelaskuliah' target="_blank" >Kode Kelas</a></td>
                                     <td>Semester<br> contoh= 20201,20202,dst</td>
+                                    <td><pre>Kode Kelas Kuliah<br>max 5 Digit<br><br><a href='?module=feedkelaskuliah' target="_blank" >Kode Kelas</a></td>
                                     <td>Nilai Angka <br> Skala 10</td>
                                     <td>Nilai Index <br> Skala 4</td>
                                     <td>Nilai Huruf <br> A,B,C,D,E</tr>
@@ -97,7 +97,7 @@ while($x = mysqli_fetch_array($hasil)){
                                                     </table>
                                                     keterangan :<br> 
                                                     <code>Copy data di Excel, lalu pastekan di kolom bawah; pemisah antar kolom menggunakan Tab(default ketika copy dari excel); 1 baris = 1 record
-                                                <br>Untuk Mempercepat Proses, Silahkan Lakukan GET DATA PRODI dan DATA Mata Kuliah</code>
+                                                <br>Untuk Mempercepat Proses, Silahkan Lakukan GET DATA MAHASISWA dan DATA KELAS Kuliah</code>
 
                                                                     </div>
                                                                 </div>
