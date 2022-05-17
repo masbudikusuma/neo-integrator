@@ -200,8 +200,8 @@ if ($jmldata > 0){
             
 
             $insert = "INSERT INTO insertmatakuliah (kode_mata_kuliah, nama_mata_kuliah, id_prodi, 
-            nama_program_studi, id_jenis_mata_kuliah, sks_mata_kuliah,insertid) VALUES 
-            ('$baris[0]', '$baris[1]', '$id_prodi', '$prodi', '$baris[3]', '$baris[4]', '$insertid');";
+            nama_program_studi, id_jenis_mata_kuliah, sks_mata_kuliah,sks_tatap_muka,insertid) VALUES 
+            ('$baris[0]', '$baris[1]', '$id_prodi', '$prodi', '$baris[3]', '$baris[4]','$baris[4]', '$insertid');";
             // echo $insert;
             mysqli_query($db, $insert);
         }

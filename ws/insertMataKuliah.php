@@ -17,9 +17,13 @@ while($x = mysqli_fetch_array($hasil)){
 						'id_prodi' =>  $x['id_prodi'],
 						'id_jenis_mata_kuliah' => $x['id_jenis_mata_kuliah'],
 						'sks_mata_kuliah' => $x['sks_mata_kuliah'],
+						'sks_tatap_muka' => $x['sks_mata_kuliah'],
+						'sks_praktek' => 0,
+						'sks_praktek_lapangan' => 0,
+						'sks_simulasi' => 0,
 					);
 				  break;
-
+print_r($data);
 				default:
 				$data = array(
 					'kode_mata_kuliah' => $x['kode_mata_kuliah'],
