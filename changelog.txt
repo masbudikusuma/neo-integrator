@@ -2,6 +2,7 @@
 - update function 
 - update petunjuk pengisian Nilai Kelas
 - create changelog.txt
+- Fixed Bug Input MK (response Ws NEO berhasil, tetapi data di Feeder tidak terbaca / NaN )
 
 16-05-2022:
 - Fix Bug Import Mahasiswa
