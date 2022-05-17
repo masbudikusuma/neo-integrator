@@ -1,7 +1,8 @@
 # Neo-Integrator
 Penerus dari SimpleFeeder, yang berubah jadi Excel2Feeder dan bertransformasi menjadi Neo-integrator
 
-Last Update : 16-05-2022
+<h3>Last Update : 17-05-2022</h3>
+Change Log : https://github.com/masbudikusuma/neo-integrator/blob/master/changelog.txt
 
 Capture : https://github.com/masbudikusuma/neo-integrator/blob/master/capture.png
 Requirement:
