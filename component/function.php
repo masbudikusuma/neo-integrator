@@ -483,8 +483,8 @@ mysqli_query($db, $update);
 
 // PDDIKTI =======================================================
 function hapus_tanda(&$string){
-    $cari_huruf = array("\n","\r","'",'&amp;','&copy;','&crarr;','&dArr;','&deg;','&divide;','&eacute;','&fnof;','&frasl;','&ge;','&harr;','&hArr;','&hellip;','&larr;','&lArr;','&ldquo;','&le;','&lowast;','&lsquo;','&mdash;','&nbsp;','&ndash;','&ne;','&plusmn;','&prime;','&Prime;','&quot;','&rarr;','&rArr;','&rdquo;','&reg;','&rsquo;','&sect;','&sum;','&times;','&uarr;','&uArr;','&lt;br /&gt;','&lt;','&gt;','%','&check;','&raquo;','&laquo;');
-    $huruf_baru = array("","","",'&','©','?','?','°','÷','é','ƒ','?','?','?','?','…','?','?','“','?','?','','','','-','?','±','?','?','"','?','?','','®','','§','?','×','?','?','','<','>',"","✓",">>","<<");													
+    $cari_huruf = array("\\","\n","\r","'",'&amp;','&copy;','&crarr;','&dArr;','&deg;','&divide;','&eacute;','&fnof;','&frasl;','&ge;','&harr;','&hArr;','&hellip;','&larr;','&lArr;','&ldquo;','&le;','&lowast;','&lsquo;','&mdash;','&nbsp;','&ndash;','&ne;','&plusmn;','&prime;','&Prime;','&quot;','&rarr;','&rArr;','&rdquo;','&reg;','&rsquo;','&sect;','&sum;','&times;','&uarr;','&uArr;','&lt;br /&gt;','&lt;','&gt;','%','&check;','&raquo;','&laquo;');
+    $huruf_baru = array("","","","",'&','©','?','?','°','÷','é','ƒ','?','?','?','?','…','?','?','“','?','?','','','','-','?','±','?','?','"','?','?','','®','','§','?','×','?','?','','<','>',"","✓",">>","<<");													
     return ucwords(strtoupper(str_ireplace($cari_huruf, $huruf_baru, $string)));
 }
 
