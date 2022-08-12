@@ -26,7 +26,7 @@
           if(mysqli_num_rows($hasil) > 0 ){
                     echo $headertable;
                     while($x = mysqli_fetch_array($hasil)){
-                    if ($x['err_no'] == '0' ){$berhasil++;}elseif(is_null($x['err_no'])){$belum++;}else{$gagal++;}
+                    if ($x['err_no'] == '0' OR $x['err_no'] == '200' ){$berhasil++;}elseif(is_null($x['err_no'])){$belum++;}else{$gagal++;}
                     echo "<tr><td><pre>" . $no++;
                     echo "</td><td><pre>" . $x['nama_mahasiswa']; echo "</td><td><pre>" . $x['nim'];
                     echo "</td><td><pre>" . $x['nama_prodi'];     echo "</td><td><pre>" . $x['Tempat_Lahir'] .", ". $x['Tanggal_Lahir'];
@@ -40,7 +40,7 @@
           }else if($show == 'berhasil'){
                     $tampil = '<a href="?module=inject&act='.$act.'&show=no"><button type="button" class="btn btn-danger">
                     SEMBUNYIKAN DATA <span class="badge bg-transparent"></span></button></a>';
-                    $query = "select * from ".$namatable." where err_no='0'";
+                    $query = "select * from ".$namatable." where err_no='0' or err_no='200'";
                     $hasil = mysqli_query($db, $query);
                     if(mysqli_num_rows($hasil) > 0 ){
                     echo $headertable;
@@ -57,7 +57,7 @@
                     }
 
                           $query = "SELECT count(id) AS total, sum(err_no IS NULL) AS belum, SUM(err_no='0') AS berhasil,
-                          SUM(err_no IS NOT NULL AND err_no!='0') AS gagal FROM ".$namatable.";";
+                          SUM(err_no IS NOT NULL AND err_no!='0' AND err_no!='200') AS gagal FROM ".$namatable.";";
                           $hitung = mysqli_query($db, $query);
                           if(mysqli_num_rows($hitung) > 0 ){
                           $data = mysqli_num_rows($hitung);
@@ -73,7 +73,7 @@
 
                                     $tampil = '<a href="?module=inject&act='.$act.'&show=no"><button type="button" class="btn btn-danger">
                                     SEMBUNYIKAN DATA <span class="badge bg-transparent"></span></button></a>';
-                                    $query = "select * from ".$namatable." where err_no!='0' and err_no is not null";
+                                    $query = "select * from ".$namatable." where err_no!='0' and err_no!='200' and err_no is not null";
                                     $hasil = mysqli_query($db, $query);
                                     if(mysqli_num_rows($hasil) > 0 ){
                                     echo $headertable;
@@ -90,7 +90,7 @@
                                     }
 
                                     $query = "SELECT count(id) AS total, sum(err_no IS NULL) AS belum, SUM(err_no='0') AS berhasil,
-                                    SUM(err_no IS NOT NULL AND err_no!='0') AS gagal FROM ".$namatable.";";
+                                    SUM(err_no IS NOT NULL AND err_no!='0' AND err_no!='200') AS gagal FROM ".$namatable.";";
                                     $hitung = mysqli_query($db, $query);
                                     if(mysqli_num_rows($hitung) > 0 ){
                                     $data = mysqli_num_rows($hitung);
@@ -123,7 +123,7 @@
             }
 
             $query = "SELECT count(id) AS total, sum(err_no IS NULL) AS belum, SUM(err_no='0') AS berhasil,
-            SUM(err_no IS NOT NULL AND err_no!='0') AS gagal FROM ".$namatable.";";
+            SUM(err_no IS NOT NULL AND err_no!='0' AND err_no!='200') AS gagal FROM ".$namatable.";";
             $hitung = mysqli_query($db, $query);
             if(mysqli_num_rows($hitung) > 0 ){
             $data = mysqli_num_rows($hitung);
@@ -138,8 +138,8 @@
           else { //HANYA MENAMPILKAN PROSES, BUKAN DATA 
             $tampil = '<a href="?module=inject&act='.$act.'"><button type="button" class="btn btn-primary">
             Tampilkan DATA <span class="badge bg-transparent"></span></button></a>';
-            $query = "SELECT count(id) AS total, sum(err_no IS NULL) AS belum, SUM(err_no='0') AS berhasil,
-            SUM(err_no IS NOT NULL AND err_no!='0') AS gagal FROM ".$namatable.";";
+            $query = "SELECT count(id) AS total, sum(err_no IS NULL) AS belum, SUM(err_no='0' or err_no='200') AS berhasil,
+            SUM(err_no IS NOT NULL AND err_no!='0' AND err_no!='200') AS gagal FROM ".$namatable.";";
             $hitung = mysqli_query($db, $query);
             if(mysqli_num_rows($hitung) > 0 ){
               $data = mysqli_num_rows($hitung);

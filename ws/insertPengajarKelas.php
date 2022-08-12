@@ -29,7 +29,7 @@ while($x = mysqli_fetch_array($hasil)){
 			$data = array(
 			 'id_registrasi_dosen' 	 => $x['id_registrasi_dosen'],
 			 'id_kelas_kuliah' 	 => $x['id_kelas_kuliah'],
-			 'id_substansi' 	 => $x['id_substansi'],
+			//  'id_substansi' 	 => $x['id_substansi'],
 			 'sks_substansi_total' 	 => $x['sks_substansi_total'],
 			 'rencana_minggu_pertemuan' 	 => $x['rencana_minggu_pertemuan'],
 			 'realisasi_minggu_pertemuan' 	 => $x['realisasi_minggu_pertemuan'],
@@ -38,7 +38,9 @@ while($x = mysqli_fetch_array($hasil)){
 			$act = "InsertDosenPengajarKelasKuliah";
 			$request = $ws->prep_insert($act,$data);
 			$ws_result = $ws->run($request);
-			// $ws->view($ws_result);
+			$ws->view($ws_result);
+			print_r($data);
+			error_log($data);
 
 $err_code = $ws_result[1]["error_code"];
 $err_desc = $ws_result[1]["error_desc"];
@@ -46,7 +48,7 @@ $err_desc = $ws_result[1]["error_desc"];
 if ($err_code == 0){
 	$id_aktivitas_mengajar = $ws_result[1]["data"]["id_aktivitas_mengajar"];
 	$update = "UPDATE insertpengajarkelas 
-		SET `err`='".$err_code."', `desc`='".$err_desc."', id_aktivitas_mengajar='".$id_aktivitas_mengajar."' WHERE  id=".$id.";";
+		SET `err_no`='".$err_code."', `err_desc`='".$err_desc."', id_aktivitas_mengajar='".$id_aktivitas_mengajar."' WHERE  id=".$id.";";
 		mysqli_query($db, $update);
 
 	// $progress = "\n".$id." - ID Aktivitas Mengajar : ".$id_aktivitas_mengajar;
@@ -55,7 +57,7 @@ if ($err_code == 0){
 }else {
 	// print_r("\n".$id." - : ".$err_code." - ".$err_desc);
 	$update = "UPDATE insertpengajarkelas 
-		SET `err`='".$err_code."', `desc`='".$err_desc."' WHERE  id=".$id.";";
+		SET `err_no`='".$err_code."', `err_desc`='".$err_desc."' WHERE  id=".$id.";";
 		mysqli_query($db, $update);
 
 	// $progress = "\n".$id." - : ".$err_code." - ".$err_desc;

@@ -1,12 +1,16 @@
 <?php
 echo "Jangan Tutup Browser Ini Hingga Proses Selesai"; 
 
-$query = "SELECT * from InsertAKM where  err_no is null or err_no != '0' order by id ASC";
+$query = "SELECT * from insertakm where  err_no is null or err_no != '0' order by id ASC";
+echo $query;
 $hasil = mysqli_query($db, $query);
 $jmlmhs = mysqli_num_rows($hasil);
 if(mysqli_num_rows($hasil) > 0 ){
 while($x = mysqli_fetch_array($hasil)){
 			$id = $x['id'];
+			$nama_mahasiswa = $x['nama_mahasiswa'];
+			$nim = $x['nim'];
+			$nim = $x['nim'];
 			$id_registrasi_mahasiswa = $x['id_registrasi_mahasiswa'];
 			$id_semester = $x['id_semester'];
 			$id_status_mahasiswa = $x['id_status_mahasiswa'];
@@ -61,6 +65,20 @@ if ($err_code == 0){
 	// print_r($statprogress);
 	echo ".";
 	progress($statprogress,$act);
+
+	$inserdb = "INSERT INTO getakm 
+(id_registrasi_mahasiswa, nama_mahasiswa, nim, id_prodi, 
+nama_program_studi, angkatan, id_semester, nama_semester, 
+id_status_mahasiswa, nama_status_mahasiswa, ips, ipk, 
+sks_semester, sks_total, biaya_kuliah_smt) VALUES 
+('$id_registrasi_mahasiswa', '$nama_mahasiswa', '$nim', 'methode insert', 
+'methode insert', 'methode insert', '$id_semester', 'methode insert', 
+'$id_status_mahasiswa', 'methode insert', '$ips', '$ipk', 
+'$sks_semester', '$total_sks', '$biaya_kuliah_smt');
+";
+// echo $inserdb;
+mysqli_query($db ,$inserdb) or die(mysqli_error($db));
+
 
 }else {
 	$update = "UPDATE insertakm SET err_no='$err_code', err_desc='$err_desc' WHERE  id=$id";

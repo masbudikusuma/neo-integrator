@@ -1,25 +1,19 @@
 <?php 
-// $module="Akmimport";
-$ModuleName = "Peserta Kelas Kuliah";
-$table = "insertpesertakelas";
+$module="cekAKM";
+$ModuleName = "CEK Aktivitas Kuliah Mahasiswa";
+$table = "cekmahasiswa";
 $link1 = $_SERVER['PHP_SELF'] . '?module='.$module.'&aksi=tambah'; //tambah data
-$link2 = "index.php?module=inject&act=".$module.'&show=no'; //Lihat Data / Lanjutkan Sync
-$link3 = $_SERVER['PHP_SELF'] . '?module='.$module.'&aksi=kosongkan'; // Kosongkan Data 
+$link2 = "index.php?module=inject&act=".$module; //Lihat Data / Lanjutkan Sync
+$link3 = $_SERVER['PHP_SELF'] . '?module='.$module.'&aksi=cancel'; // Kosongkan Data / Cancel
 $link4 = $_SERVER['PHP_SELF'] . '?module=inject&act='.$module.'&show=no' ; // PAGE SYNCRON KE FEEDER
-$cancel = $_SERVER['PHP_SELF'] . '?module='.$module.'&aksi=cancel&insertid='.$insertid; //  Cancel
-if (isset($_GET['insertid'])){$deleteinsert=$_GET['insertid'];}else{$deleteinsert=null;}
+// $link4 = $_SERVER['PHP_SELF'] . '?module='.$module.'&aksi=tambah'; //Submit Inputan
 // ACT DETECT
 if (isset($_GET['aksi']))
 {
-    $aksi = $_GET['aksi'];
+        $aksi = $_GET['aksi'];
     switch ($_GET['aksi'])
     {
         case "cancel":
-            $clear_temp = "DELETE FROM ".$table." WHERE  insertid='$deleteinsert';";
-            mysqli_query($db, $clear_temp);
-        break;
-
-        case "kosongkan":
             $clear_temp = "TRUNCATE ".$table;
             mysqli_query($db, $clear_temp);
         break;
@@ -44,9 +38,8 @@ while($x = mysqli_fetch_array($hasil)){
 }
 }
 
-
-
 ?>
+
 <div class="content-wrapper container">
 
 <div class="page-content">
@@ -58,7 +51,7 @@ while($x = mysqli_fetch_array($hasil)){
                         <div class="card-body">
 <!----------------- OPSI TEXT ------------------------------->
                                 <div class="tab-pane fade show active" id="list-TEXT" role="tabpanel" aria-labelledby="list-TEXT-list">
-                                    <h4 class="card-title">IMPORT DATA <?php echo $ModuleName;?></h4>
+                                    <h4 class="card-title"> <?php echo $ModuleName;?></h4>
                                 <ul class="pagination pagination-primary  justify-content-center">                      
                                 <div class="buttons justify-content-center">    
                                     <div class="modal-success me-1 mb-1 d-inline-block"><br>
@@ -80,21 +73,17 @@ while($x = mysqli_fetch_array($hasil)){
                                                             <div class="col">
                                                                 <div class="card">
                                                                     <div class="card-header">
-                                                    <table class='table table-striped' id='table1' border='1'>
-                                    <tr><th>NIM</th><th>Kode Mata Kuliah</th><th>Kode Kelas</th><th>Semester</th></tr>
-                                    <tr><td>Nomor Induk Mahasiswa</td>
-                                    <td><dd class="text-sm word-wrap">Kode Mata Kuliah</dd><br><a href='?module=feedmk' target="_blank" >Kode MK</a></td>
-                                    <td><dd class="text-sm word-wrap">Max 5 karakter</dd><br>Contoh : 7IPA1</dd></td>
-                                    <td><dd class="text-sm word-wrap">Semester</dd><br>Contoh : 20181, 20182, 20191, dst</dd></td>
-                                    </tr>
-                                    <tr><td>contoh :</td><td colspan='7'><code><pre>
-1701028007	KPI-2204	2KPI2	20172
-1701028008	KPI-2204	2KPI2	20172
+                                                                        <table class='table table-striped' id='table1' border='1'>
+                                                                        <tr><th colspan='2'>NIM</th></tr>
+                                                                        <tr><td colspan='2'>Nomor Induk Mahasiswa</td></tr>
+                                                                        <tr><td>contoh :</td><td ><code><pre>
+1903017025	NAMA1
+1903017009	NAMA2
 </pre></code>
-                                    </td></tr>
-                                                    </table>
-                                                    keterangan :<br> 
-                                                    <code>Copy data di Excel, lalu pastekan di kolom bawah; pemisah antar kolom menggunakan Tab(default ketika copy dari excel); 1 baris = 1 record</code>
+                                                                        </td></tr>
+                                                                        </table>
+                                                                        keterangan :<br> 
+                                                                        <code>Copy data di Excel, lalu pastekan di kolom bawah; pemisah antar kolom menggunakan Tab(default ketika copy dari excel); 1 baris = 1 record<br>Untuk Mempercepat Proses, Silahkan Lakukan GETDATA MAHASISWA</code>
 
                                                                     </div>
                                                                 </div>
@@ -114,9 +103,10 @@ while($x = mysqli_fetch_array($hasil)){
                                 </div>
                                 </ul>
                                                 <!-- ISO MODAL -->
-
-                                                    Untuk Cara Penggunaan, Silahkan Klik Petunjuk Penggunaan
+                                                Untuk Cara Penggunaan, Silahkan Klik Petunjuk Penggunaan<br>
+                                                
                                                   <?php
+$jmldata = 0;
 if ($jmldata > 0){
     if ($aksi !='tambah'){ 
         echo '<div class="alert alert-light-danger color-danger">Masih ada Data Existing Belum di Sync Ke Feeder Sejumlah '.$jmldata.' Record (Belum Sync : '.$belum.', Berhasil : '.$berhasil.', Gagal : '.$gagal.'). 
@@ -151,9 +141,11 @@ if ($jmldata > 0){
                                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="input"></textarea>
                                                             <label>Paste Data Excel di Kolom bawah</label>
                                                         </div>
-                                                        <button class="btn btn-outline-secondary" type="submit" >submit</button>
+                                                        <button class="btn btn-outline-secondary" type="submit" >Sumbit</button>
+                                                        
                                                         <br><br>
                                                     </form>          
+                                                    
                                     </div></div>
     <?php
     }
@@ -161,138 +153,81 @@ if ($jmldata > 0){
                                         else{
                                                   ?>
                                                     <!-- KONDISI KETIKA KOSONG -->
+                                                    <button disabled>Data AKM : <?php jmlakm($jmlakm); echo $jmlakm; ?> Record</button>
                                                     <form  method="POST" action="<?php echo $link1; ?>" >
                                                         <div class="form-group with-title mb-3">
                                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="input"></textarea>
                                                             <label>Paste Data Excel di Kolom bawah</label>
                                                         </div>
-                                                        <button class="btn btn-outline-secondary" type="submit" >Submit</button>
+                                                        *Jika Jumlah Data AKM 0, silahkan <a href="index.php?module=tarikdata"><b>TARIKDATA GetAKM</b> </a> dahulu<br>
+                                                        <button class="btn btn-outline-secondary" type="submit" >Sumbit</button>
                                                         <br><br>
+                                                        
                                                     </form>          
                                     </div></div>
                                             
 <?php
   }//PENUTUP JIKA ADA DATA YANG BELUM DI SYNC
-  if (isset($_POST['input']))
-  {
-    //   8 Column
-      $no = 0;
-      $input = $_POST['input'];
-      $line = explode("\n", $input);
-    echo "<table class='table table-striped' id='table1' border='1'>
-    <tr><th>NO</th><th>NIM</th><th>Nama</th><th>Prodi</th><th>Semester</th>
-    <th>Kode MK</th><th>Kode Kelas</th><th>ID Kelas</th></tr>";
-    foreach ($line as $baris){
-        $baris = explode("\t",$baris);
-        if (isset($baris[2])){
+
+if (isset($_POST['input']))
+{
+    $no = 0;
+    $input = $_POST['input'];
+    
+    $line = explode("\n", $input);
+    echo "<table class='table table-striped' id='table1' border='1'><tr>
+    <th>Baris</th><th>NIM</th><th>NAMA</th><th>Program Studi</th><th>Jumlah Akm</th><th>Detail AKM</th></tr>";
+    foreach ($line as $baris)
+    {
+        $baris = explode("\t", $baris);
+        // print_r($baris);
+        if (isset($baris[0]))
+        {
             $no++;
-            
-                $nim = $baris[0];
-                $kodemk = $baris[1];
-                $namakelas = $baris[2];
-                $semester = $baris[3];
-                $semester = preg_replace('/\s+/', '', $semester);
+            $nim = $baris[0];
+            // $id_reg_mhs = $nama = $jk=$tl =$prodi = $status=$baris[0];
 
-                // Get ID REG MAHASISWA
-                $query = "SELECT * from getmahasiswa where nim='$nim'";
-                $hasil = mysqli_query($db, $query);
-                if(mysqli_num_rows($hasil) > 0 ){
-                while($x = mysqli_fetch_array($hasil)){
-                $namaprodi = $x['nama_program_studi'];
-                $id_prodi = $x['id_prodi'];
-                $nama_mahasiswa = $x['nama_mahasiswa'];
-                $id_registrasi_mahasiswa = $x['id_registrasi_mahasiswa'];                
-                }}else{
-                $namaprodi = "<code>tidak ditemukan</code>";
-                $id_prodi = "<code>tidak ditemukan<code>";
-                $nama_mahasiswa = "<code>NIM ditemukan<code>";
-                $id_registrasi_mahasiswa = "<code>tidak ditemukan<code>";
-                }
-            //    echo "inidia :".$semester."-".$namakelas;
-                $id_key= $semester."_".$namakelas."_".$kodemk."_".$id_prodi;
-                
-                        // Get Kelas Kuliah
-                        $query = "SELECT * from getkelaskuliah where id_key='$id_key'";
-                        $hasil = mysqli_query($db, $query);
-                        if(mysqli_num_rows($hasil) > 0 ){
-                        while($x = mysqli_fetch_array($hasil)){
-                        $id_kelas_kuliah = $x['id_kelas_kuliah'];
-                        }}else{
-                        $id_kelas_kuliah = "tidak ditemukan";
-                        }
+$query = "SELECT nim, a.nama_mahasiswa, a.nama_program_studi, a.id_semester AS jumlah, a.nama_status_mahasiswa as status  FROM getakm AS a WHERE a.nim  = '".$nim."' ORDER BY a.id_semester asc";
+// echo $query;
+$hasil = mysqli_query($db, $query);
+if(mysqli_num_rows($hasil) > 0 ){
+    // $no++;
+    $jmlakm = 0;
+    $detail = "";
+    while($x = mysqli_fetch_array($hasil)){
+        $jmlakm++;
+        $nim = $x['nim'];
+        $nama = $x['nama_mahasiswa'];
+        $prodi = $x['nama_program_studi'];
+        $semester = $x['jumlah'];
+        $status = $x['status'];
+        $detail = $detail . $semester."(".$status.");";
+        
+}
+echo '<tr style=font-size:12px><td><b>'.$no.'</b></td><td>'.$nim.'</td><td>'.$nama.'</td><td>'.$prodi.'</td>
+<td>'.$jmlakm.'</td><td style=font-size:12px>'.$detail.'</td></tr>';
+
+}else{
+    echo '<tr style=font-size:11px><td><b>'.$no.'</b></td><td>'.$nim.'</td><td><code>Tidak Ditemukan</code></td><td><code>Tidak Ditemukan</code></td><td><code>Tidak Ditemukan</code></td><td><code>Tidak Ditemukan</code></td></tr>';
+}
 
 
-// <tr><th>NO</th><th>NIM</th><th>Nama</th><th>Prodi</th><th>Semester</th>
-// <th>Kode MK</th><th>Kode Kelas</th><th>ID Kelas</th></tr>";
-                    
-            echo "<tr><td><pre>" . $no;
-            echo "</td><td><pre>".$baris[0];
-            echo "</td><td><pre>".$nama_mahasiswa;
-            echo "</td><td><pre>".$namaprodi;
-            echo "</td><td><pre>".$baris[3];
-            echo "</td><td><pre>".$baris[1];
-            echo "</td><td><pre>".$baris[2];
-            echo "</td><td><pre>".$id_kelas_kuliah."</td></tr>";
-            
 
-            $insert = "INSERT IGNORE INTO insertpesertakelas 
-            (id_kelas_kuliah, id_registrasi_mahasiswa, nim, nama_mahasiswa, nama_prodi, 
-            kode_mata_kuliah, kode_kelas, semester, insertid) VALUES 
-            ('$id_kelas_kuliah', '$id_registrasi_mahasiswa', '$nim', '$nama_mahasiswa', '$namaprodi', 
-            '$kodemk', '$namakelas', '$semester', '$insertid');";
-            // echo $insert;
-            mysqli_query($db, $insert);
+            // echo $nim;
+            // caribiomhs($nim,$nama,$jk,$tl,$prodi,$status);
+            // // $id_reg_mahasiswa = $id_reg_mhs;
+            // echo "<tr><td>" . $no;
+            // echo "</td><td>" . $nim;
+            // echo "</td><td>" . $nama;
+            // echo "</td><td>" . $jk;
+            // echo "</td><td>" . $tl;
+            // echo "</td><td>" . $status;
+            // echo "</td><td>" . $prodi . "</td></tr>";
         }
     }
     echo "<table>";
-    echo '
-<ul class="pagination pagination-primary  justify-content-center">               
-    <!-- MODAL CANCEL -->
-    <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#cancel">  CANCEL </button>   
-        <!--primary theme Modal -->
-        <div class="modal fade text-left" id="cancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-danger">
-                    <h5 class="modal-title white" id="myModalLabel110">Konfirmasi Pembatalan</h5>
-                    </div>
-                    <div class="modal-body">
-                    <center>Anda Yakin Ingin Membatalkan  Sejumlah <br>
-                        <h5 class="modal-title black" id="myModalLabel110">' . $no . ' RECORD</center></h5>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal"> <span class="d-none d-sm-block"> Close </span> </button>
-                        <a href="'.$cancel.'"> <button type="submit" class="btn btn-danger ml-1" > <span class="d-none d-sm-block">  BATALKAN  </span></button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-
-        <!-- MODAL PROSES -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#proses"> PROSES </button>
-        <!--primary theme Modal -->
-        <div class="modal fade text-left" id="proses" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-success">
-                    <h5 class="modal-title white" id="myModalLabel110">  KONFIRMASI  </h5>
-                    </div>
-                    <div class="modal-body">
-                    <center>Anda Yakin Ingin Memproses Mahasiswa Keluar Sejumlah <br>
-                        <h5 class="modal-title black" id="myModalLabel110">' . $no . ' RECORD</center></h5>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal"> <span class="d-none d-sm-block">  CLOSE  </span></button>
-                    <a href="' . $link4 . '"><button type="submit" class="btn btn-success ml-1" > <span class="d-none d-sm-block">  lANJUTKAN  </span></button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        
-</ul>                                   
-';
+    // echo '<a><button class="btn btn-outline-secondary" type="warning" >Sumbit</button></a>'."\t";
+   
     //  print_r ($line);
     // echo $input;
     
@@ -311,15 +246,10 @@ else
 {
 }
 
-
-
 ?>
     </div>
                                         </div>
-
                                     </section>
-
-                                   
                                 </div>
     
                             </div>

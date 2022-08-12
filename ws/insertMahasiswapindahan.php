@@ -3,7 +3,7 @@ getPT($pt);
 $idpt = $pt['id_pt'];
 
 // $query = "SELECT * from insertmahasiswa where id < 11 ";
-$query = "SELECT * from insertmahasiswa WHERE err_no is null or err_no NOT IN (0,200) order by id ASC";
+$query = "SELECT * from insertmahasiswa where err_no is null or err_no != '0' or err_no != '200' order by id ASC";
 // $query = "SELECT b.err, a.* from insertmahasiswa AS a  LEFT JOIN cekmahasiswa AS b ON a.nim = b.nim  where b.err='999' ";
 // echo $query;
 $hasil = mysqli_query($db, $query);
@@ -31,7 +31,7 @@ while($x = mysqli_fetch_array($hasil)){
 			 'id_kebutuhan_khusus_mahasiswa' => 0, 
 			 'id_kebutuhan_khusus_ayah' => 0,
 			 'id_kebutuhan_khusus_ibu' => 0,
-			 'nisn' => '123123',
+			 'nisn' => '123123'			 
 			 );
 			//  print_r($data);
 			 $act = "InsertBiodataMahasiswa";
@@ -41,7 +41,7 @@ while($x = mysqli_fetch_array($hasil)){
 			$err_code = $ws_result[1]["error_code"];
 			$err_desc = $ws_result[1]["error_desc"];
 			
-			$update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc='$err_desc' WHERE  id=$id";
+			$update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc'$err_desc' WHERE  id=$id";
 			mysqli_query($db, $update);
 
 			
@@ -49,7 +49,7 @@ while($x = mysqli_fetch_array($hasil)){
 
 			if($err_code == 0){
 				$id_mahasiswa = $ws_result[1]["data"]["id_mahasiswa"];
-				$update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc='$err_desc',Id_mahasiswa='$id_mahasiswa' WHERE  id=$id";
+				$update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc'$err_desc',Id_mahasiswa='$id_mahasiswa' WHERE  id=$id";
 				mysqli_query($db, $update);
 				echo $id_mahasiswa;
 				$data = array(
@@ -60,7 +60,10 @@ while($x = mysqli_fetch_array($hasil)){
 					'tanggal_daftar' 	=> $x['tanggal_daftar'], 
 					'id_periode_masuk' 	=> $x['periode'], 
 					'Biaya_Masuk' 	=> $x['Biaya_Masuk'],
-					'id_perguruan_tinggi' => $idpt
+					'id_perguruan_tinggi' => $idpt,
+					'id_perguruan_tinggi_asal' => '123123',
+					'id_prodi_asal' => '123123',
+					'sks_diakui' => '123123'
 					);
 
 				$act = "InsertRiwayatPendidikanMahasiswa";

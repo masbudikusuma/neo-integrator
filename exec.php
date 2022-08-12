@@ -19,6 +19,8 @@ switch ($act) {
 
     case "getProdi":            include "ws/getProdi.php";  break;
 
+    case "getAllProdi":            include "ws/getAllProdi.php";  break;
+
     case "getPenugasanDosen":   include "ws/getPenugasanDosen.php";  break;
 
     case "cekMataKuliah":       include "ws/cekMataKuliah.php";break;

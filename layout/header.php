@@ -170,6 +170,7 @@ if ($result->num_rows > 0) {
                         }
                     }
                         ?>    
+                        <li class='submenu-item'><a href='?module=cekAKM' class='submenu-link'>Cek Jumlah AKM Terlapor</a></li>
                                         
                                         </ul>                                        
                                     </div>

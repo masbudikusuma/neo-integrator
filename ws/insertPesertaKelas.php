@@ -12,7 +12,7 @@
 
 echo "Jangan Tutup Browser Ini Hingga Proses Selesai";
 
-$query = "SELECT * from InsertPesertaKelas where err_no is null or err_no != '0' order by id ASC";
+$query = "SELECT * from insertpesertakelas where err_no is null or err_no != '0' order by id ASC";
 $no = 0;
 
 $hasil = mysqli_query($db, $query);

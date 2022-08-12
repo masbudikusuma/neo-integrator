@@ -6,14 +6,14 @@
 // ob_implicit_flush();
 
 $filter = "";
-$limit = 10000;
+$limit = "";
 $order = 0;$no = 0;
 $act = "GetListPerkuliahanMahasiswa";
 $request = $ws->prep_get($act,$filter,$limit,$order);
 			$ws_result = $ws->run($request);
 			// $ws->view($ws_result);
 
-$kosongkantabel = "TRUNCATE getAKM;";
+$kosongkantabel = "TRUNCATE getakm;";
 mysqli_query($db ,$kosongkantabel);
 
 if ($ws_result[1]["error_code"] == 0) {
@@ -41,7 +41,7 @@ $sks_semester = $key3['sks_semester'];
 $sks_total = $key3['sks_total'];
 $biaya_kuliah_smt = $key3['biaya_kuliah_smt'];
 
-echo "\n$no - ".$nama_mahasiswa." Semester : ".$nama_semester;
+echo "\n$no - ".$nim." Semester : ".$nama_semester;
 
 $inserdb = "INSERT INTO getakm 
 (id_registrasi_mahasiswa, nama_mahasiswa, nim, id_prodi, 
@@ -55,9 +55,9 @@ sks_semester, sks_total, biaya_kuliah_smt) VALUES
 ";
 // echo $inserdb;
 mysqli_query($db ,$inserdb) or die(mysqli_error($db));
-$progress = "\n".$no." - ID Reg MHS : ".$id_registrasi_mahasiswa;
-progress($progress,$act);
-print_r($progress);
+$progress = "\n".$no." - ID Reg MHS : ".$id_registrasi_mahasiswa."Semester : ".$nama_semester;
+// progress($progress,$act);
+// print_r($progress);
 							}
 					} //IF Key2
 				}
