@@ -350,7 +350,7 @@ function jmldosen(&$jmldosen){
 // CARI ID IDMAHASIWA ==============================================================
 function cariidmhs(&$nama,&$tanggallahir,&$id_mahasiswa){
     require "component/config.php"; 
-    $nama = $nama;
+    $nama = strtoupper($nama);
     $tanggal_lahir = $tanggallahir;
     $tanggal_lahir = date("d-m-Y", strtotime($tanggal_lahir));  
     $filter = "nama_mahasiswa='$nama' and tanggal_lahir='$tanggal_lahir' "; //cek berdasarkan nama
