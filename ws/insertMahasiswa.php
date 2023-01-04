@@ -31,15 +31,21 @@ while($x = mysqli_fetch_array($hasil)){
 			 'id_kebutuhan_khusus_mahasiswa' => 0, 
 			 'id_kebutuhan_khusus_ayah' => 0,
 			 'id_kebutuhan_khusus_ibu' => 0,
-			 'nisn' => '123123',
+			 'nisn' => '1231231234',
 			 );
 			//  print_r($data);
 			 $act = "InsertBiodataMahasiswa";
 			$request = $ws->prep_insert($act,$data);
 			$ws_result = $ws->run($request);
-			//  $ws->view($ws_result);
-			$err_code = $ws_result[1]["error_code"];
-			$err_desc = $ws_result[1]["error_desc"];
+			//  $ws->view($ws_result);                         
+			 if(isset($ws_result[1]["error_code"])){
+                         $err_code = $ws_result[1]["error_code"];
+                         $err_desc = $ws_result[1]["error_desc"];
+                         } else {
+                         $err_code = $ws_result[1]["code"];
+                         $err_desc = $ws_result[1]["message"];
+                         }
+
 			
 			$update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc='$err_desc' WHERE  id=$id";
 			mysqli_query($db, $update);
@@ -59,8 +65,9 @@ while($x = mysqli_fetch_array($hasil)){
 					'id_jenis_daftar' 	=> $x['Jenis_masuk'], 
 					'tanggal_daftar' 	=> $x['tanggal_daftar'], 
 					'id_periode_masuk' 	=> $x['periode'], 
-					'Biaya_Masuk' 	=> $x['Biaya_Masuk'],
-					'id_perguruan_tinggi' => $idpt
+                                        'biaya_masuk'   => $x['Biaya_Masuk'],
+                                        'id_pembiayaan' => 1,
+                                         'id_perguruan_tinggi' => $idpt
 					);
 
 				$act = "InsertRiwayatPendidikanMahasiswa";
@@ -89,7 +96,7 @@ while($x = mysqli_fetch_array($hasil)){
 					}
 			
 			} 
-			else if ($err_code == 200){
+			else if ($err_code == 200 || $err_code == 1209 )){
 							cariidmhs($x['nama_mahasiswa'],$x['Tanggal_Lahir'],$id_mahasiswa);	
 							// echo $id_mahasiswa;
 							$update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc='$err_desc',Id_mahasiswa='$id_mahasiswa' WHERE  id=$id";
@@ -102,7 +109,8 @@ while($x = mysqli_fetch_array($hasil)){
 								'id_jenis_daftar' 	=> $x['Jenis_masuk'], 
 								'tanggal_daftar' 	=> $x['tanggal_daftar'], 
 								'id_periode_masuk' 	=> $x['periode'], 
-								'Biaya_Masuk' 	=> $x['Biaya_Masuk'],
+								'biaya_masuk'   => $x['Biaya_Masuk'],
+								'id_pembiayaan' => 1,
 								'id_perguruan_tinggi' => $idpt
 								);
 
