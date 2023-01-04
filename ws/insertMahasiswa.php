@@ -96,7 +96,7 @@ while($x = mysqli_fetch_array($hasil)){
 					}
 			
 			} 
-			else if ($err_code == 200 || $err_code == 1209 )){
+			else if ($err_code == 200 || $err_code == 1209 ){
 							cariidmhs($x['nama_mahasiswa'],$x['Tanggal_Lahir'],$id_mahasiswa);	
 							// echo $id_mahasiswa;
 							$update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc='$err_desc',Id_mahasiswa='$id_mahasiswa' WHERE  id=$id";
