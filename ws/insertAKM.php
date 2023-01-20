@@ -19,6 +19,7 @@ while($x = mysqli_fetch_array($hasil)){
 			$sks_semester = $x['sks_semester'];
 			$total_sks = $x['total_sks'];
 			$biaya_kuliah_smt = $x['biaya_kuliah_smt'];
+			$id_pembiayaan = 1; //Update 20-01-2023
 
 			// $id_kelas_kuliah = $x['id_kelas_kuliah'];
 			$data = array(
@@ -29,7 +30,8 @@ while($x = mysqli_fetch_array($hasil)){
 			 'ipk' 	=> $ipk,
 			 'sks_semester' 	=> $sks_semester,
 			 'total_sks' 	=> $total_sks,
-			 'biaya_kuliah_smt' 	=> $biaya_kuliah_smt
+			 'biaya_kuliah_smt' 	=> $biaya_kuliah_smt,
+			 'id_pembiayaan' => 1
 			);
 			// print_r($data);
 			// print_r("data : ".$data)  ;
