@@ -32,6 +32,7 @@ while($x = mysqli_fetch_array($hasil)){
 			 'id_kebutuhan_khusus_ayah' => 0,
 			 'id_kebutuhan_khusus_ibu' => 0,
 			 'nisn' => '1231231234',
+			 'email' => 'pt@ac.id',
 			 );
 			//  print_r($data);
 			 $act = "InsertBiodataMahasiswa";
