@@ -25,7 +25,6 @@ date_default_timezone_set("Asia/Bangkok");
 $date = date('Y-m-d h:i:s', time());
 $id_insert = time();
 
-include_once 'component/ws_pddikti.php';
 include_once 'component/function.php';
 ini_set('max_execution_time', '100000');
 

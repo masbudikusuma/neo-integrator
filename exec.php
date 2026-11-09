@@ -1,4 +1,14 @@
 <?php
+if (php_sapi_name() !== 'cli') {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    if (!isset($_SESSION['session']) || empty($_SESSION['session'])) {
+        http_response_code(403);
+        die("<h4>Akses Ditolak: Anda belum login atau sesi Anda telah berakhir.</h4><p><a href='login.php'>Silakan login terlebih dahulu</a></p>");
+    }
+}
+
 include_once 'component/config.php';
 ob_start(); $buffer = str_repeat("", 4096)."\r\n<span></span>\r\n"; //show progress
 $now = new DateTime();
@@ -7,61 +17,66 @@ $closebrowser = '<br><b>Proses Selesai</b><br><button onclick="self.close()">Clo
 if (isset($_GET['act'])){$act  = $_GET['act'];} else {$act=1;}
 
 switch ($act) {
-    case "cekMahasiswa":        include "ws/cekMahasiswa.php";break;
+    case "cekMahasiswa":                include "ws/cekMahasiswa.php";break;
     
-    case "cekBiodata":          include "ws/cekBiodataMHS.php";break;
+    case "cekBiodata":                  include "ws/cekBiodataMHS.php";break;
     
-    case "getMahasiswa":        include "ws/getMahasiswa.php";break;
+    case "getMahasiswa":                include "ws/getMahasiswa.php";break;
     
-    case "getDosen":        include "ws/getDosen.php";break;
+    case "getDosen":                    include "ws/getDosen.php";break;
     
-    case "insertMahasiswa":     include "ws/insertMahasiswa.php";  break;
+    case "insertMahasiswa":             include "ws/insertMahasiswa.php"; break;
 
-    case "getProdi":            include "ws/getProdi.php";  break;
+    case "insertMahasiswapindahan":     include "ws/insertMahasiswapindahan.php"; break;
 
-    case "getAllProdi":            include "ws/getAllProdi.php";  break;
+    case "getProdi":                    include "ws/getProdi.php"; break;
 
-    case "getPenugasanDosen":   include "ws/getPenugasanDosen.php";  break;
+    case "getAllProdi":                 include "ws/getAllProdi.php"; break;
 
-    case "cekMataKuliah":       include "ws/cekMataKuliah.php";break;
+    case "getPenugasanDosen":           include "ws/getPenugasanDosen.php"; break;
 
-    case "getMataKuliah":        include "ws/getMataKuliah.php";  break;
+    case "cekMataKuliah":               include "ws/cekMataKuliah.php";break;
 
-    case "insertMataKuliah":    include "ws/insertMataKuliah.php";break;
+    case "getMataKuliah":               include "ws/getMataKuliah.php"; break;
 
-    case "insertKelasKuliah":   include "ws/insertKelasKuliah.php";break;
+    case "insertMataKuliah":            include "ws/insertMataKuliah.php";break;
+
+    case "insertMataKuliahKurikulum":
+    case "insertMKKurikulum":           include "ws/insertMataKuliahKurikulum.php";break;
+
+    case "insertKelasKuliah":           include "ws/insertKelasKuliah.php";break;
       
-    case "getKelasKuliah":      include "ws/getKelasKuliah.php";break;
+    case "getKelasKuliah":              include "ws/getKelasKuliah.php";break;
     
-    case "insertPesertaKelas":  include "ws/insertPesertaKelas.php";break;
+    case "insertPesertaKelas":          include "ws/insertPesertaKelas.php";break;
 
-    case "insertNilaiKuliah":  include "ws/insertNilaiKuliah.php";break;
+    case "insertNilaiKuliah":           include "ws/insertNilaiKuliah.php";break;
 
-    case "getPesertaKelas":  include "ws/getPesertaKelas.php";break;
+    case "getPesertaKelas":             include "ws/getPesertaKelas.php";break;
 
-    case "getPengajarKelas":    include "ws/getPengajarKelas.php";break;
+    case "getPengajarKelas":            include "ws/getPengajarKelas.php";break;
 
-    case "insertPengajarKelas": include "ws/insertPengajarKelas.php";break;
+    case "insertPengajarKelas":         include "ws/insertPengajarKelas.php";break;
 
-    case "insertAKM":           include "ws/insertAKM.php";break;
+    case "insertAKM":                   include "ws/insertAKM.php";break;
     
-    case "updateAKM":           include "ws/updateAKM.php";  break;
+    case "updateAKM":                   include "ws/updateAKM.php"; break;
 
-    case "getAKM":              include "ws/getAKM.php";break;
+    case "getAKM":                      include "ws/getAKM.php";break;
     
-    case "getNilaiKuliah":      include "ws/getNilaiKuliah.php";break;
+    case "getNilaiKuliah":              include "ws/getNilaiKuliah.php";break;
 
-    case "getKurikulum":        include "ws/getKurikulum.php";    break;
+    case "getKurikulum":                include "ws/getKurikulum.php"; break;
 
-    case "getMKKurikulum":      include "ws/getmataKuliahKurikulum.php";break;
+    case "getMKKurikulum":              include "ws/getMataKuliahKurikulum.php";break;
 
-    case "insertmhskeluar":     include "ws/insertMahasiswaLulusDO.php";  break;
+    case "insertmhskeluar":             include "ws/insertMahasiswaLulusDO.php"; break;
     
-    case "updateMahasiswa":     include "ws/updateMahasiswa.php";  break;
+    case "updateMahasiswa":             include "ws/updateMahasiswa.php"; break;
     
-    case "output":              include "ws/output.php";break;
+    case "output":                      include "ws/output.php";break;
 
-    case "dict":                include "ws/getDict.php";break;
+    case "dict":                        include "ws/getDict.php";break;
     default:
       echo "act is not list, cek exec.php";
   }

@@ -69,12 +69,17 @@ $respon = "<code>data idmhs tidak ditemukan</code>";
 
 // PDDIKTI LOG=======================================================
 function log_insert($act,$data_insert,$error_no,$error_desc){  
-require "component/config.php";  
-$data_insert = serialize($data_insert); 
-$insert = "INSERT INTO log_insert (act, data, error, error_desc) VALUES 
-('$act', '$data_insert', '$error_no', '$error_desc');";
-mysqli_query($db, $insert);
+    require "component/config.php";  
+    $data_insert = serialize($data_insert); 
+    $stmt = mysqli_prepare($db, "INSERT INTO log_insert (act, data, error, error_desc) VALUES (?, ?, ?, ?)");
+    if ($stmt) {
+        $err_no_str = (string)$error_no;
+        $err_desc_str = (string)$error_desc;
+        mysqli_stmt_bind_param($stmt, "ssss", $act, $data_insert, $err_no_str, $err_desc_str);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
     }
+}
 
 // PDDIKTI =======================================================
 function get_token(&$token){    
@@ -378,15 +383,23 @@ function cariidmhs(&$nama,&$tanggallahir,&$id_mahasiswa){
 function cariidregmhs(&$nim,&$id_reg_mhs,&$nama,&$prodi){
     require "component/config.php";
     // cariidblokal
-    $query = "SELECT a.nama_mahasiswa, a.id_registrasi_mahasiswa, a.id_prodi, a.nama_program_studi FROM getmahasiswa AS a WHERE nim ='$nim'";
-    $hasil = mysqli_query($db, $query);
-    if(mysqli_num_rows($hasil) > 0 ){
-        while($x = mysqli_fetch_array($hasil)){
-            $id_reg_mhs = $x['id_registrasi_mahasiswa'];
-            $nama = $x['nama_mahasiswa'];
-            $prodi = $x['nama_program_studi'];
-        }}
-        else        //cari di WS
+    $stmt = mysqli_prepare($db, "SELECT a.nama_mahasiswa, a.id_registrasi_mahasiswa, a.id_prodi, a.nama_program_studi FROM getmahasiswa AS a WHERE nim = ?");
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "s", $nim);
+        mysqli_stmt_execute($stmt);
+        $hasil = mysqli_stmt_get_result($stmt);
+        if ($hasil && mysqli_num_rows($hasil) > 0 ){
+            while($x = mysqli_fetch_array($hasil)){
+                $id_reg_mhs = $x['id_registrasi_mahasiswa'];
+                $nama = $x['nama_mahasiswa'];
+                $prodi = $x['nama_program_studi'];
+            }
+            mysqli_stmt_close($stmt);
+            return;
+        }
+        mysqli_stmt_close($stmt);
+    }
+    //cari di WS
         {
             $filter = "nim='$nim'"; //cek berdasarkan NIM
             $request = $ws->prep_get('GetListMahasiswa',$filter,1,0);
@@ -477,8 +490,12 @@ function carikelas(&$kodemk,&$kodekelas,&$semester,$id_kelas_kuliah){
 // PDDIKTI =======================================================
 function progress(&$statprogress,&$act){
     require "component/config.php"; 
-$update = "UPDATE progress SET  keterangan='$statprogress', used='yes' WHERE act='$act' ;";
-mysqli_query($db, $update);
+    $stmt = mysqli_prepare($db, "UPDATE progress SET keterangan = ?, used = 'yes' WHERE act = ?");
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "ss", $statprogress, $act);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    }
 }
 
 // PDDIKTI =======================================================
@@ -493,12 +510,15 @@ function hapus_tanda(&$string){
 function sys_log($activity)
 {
   require "component/config.php";
-  $user       = $_SESSION['username'];
-  $ip_address = $_SERVER['REMOTE_ADDR'];
-  $user_agent = $_SERVER['HTTP_USER_AGENT'];
-  $sql = "INSERT INTO sys_log (user, activity, ip_address, user_agent) VALUES ('$user', '$activity', '$ip_address', '$user_agent')";
-  mysqli_query($db,$sql);
-  // echo $sql;
+  $user       = isset($_SESSION['username']) ? $_SESSION['username'] : 'guest';
+  $ip_address = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
+  $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+  $stmt = mysqli_prepare($db, "INSERT INTO sys_log (user, activity, ip_address, user_agent) VALUES (?, ?, ?, ?)");
+  if ($stmt) {
+      mysqli_stmt_bind_param($stmt, "ssss", $user, $activity, $ip_address, $user_agent);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_close($stmt);
+  }
 }
 
 ?>
