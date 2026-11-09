@@ -41,7 +41,7 @@ while($x = mysqli_fetch_array($hasil)){
 			$err_code = $ws_result[1]["error_code"];
 			$err_desc = $ws_result[1]["error_desc"];
 			
-			$update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc'$err_desc' WHERE  id=$id";
+			$update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc='$err_desc' WHERE  id=$id";
 			mysqli_query($db, $update);
 
 			
@@ -49,7 +49,7 @@ while($x = mysqli_fetch_array($hasil)){
 
 			if($err_code == 0){
 				$id_mahasiswa = $ws_result[1]["data"]["id_mahasiswa"];
-				$update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc'$err_desc',Id_mahasiswa='$id_mahasiswa' WHERE  id=$id";
+				$update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc='$err_desc',Id_mahasiswa='$id_mahasiswa' WHERE  id=$id";
 				mysqli_query($db, $update);
 				echo $id_mahasiswa;
 				$data = array(
@@ -117,7 +117,7 @@ while($x = mysqli_fetch_array($hasil)){
 							$err_desc = $ws_result[1]["error_desc"];
 							
 							
-							// $update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc'$err_desc' WHERE  id=$id";
+							// $update = "UPDATE insertmahasiswa SET err_no='$err_code', err_desc='$err_desc' WHERE  id=$id";
 							// mysqli_query($db, $update);
 
 							log_insert($act,$data,$err_code,$err_desc);

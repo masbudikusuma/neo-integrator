@@ -10,20 +10,25 @@
     $datacount = $querycount->fetch_array();
       $totalData = $datacount['jumlah'];
       $totalFiltered = $totalData;
-      $limit = $_POST['length'];
-      $start = $_POST['start'];
-    
-      $order = $line[$_POST['order']['0']['column']];
-      $dir = $_POST['order']['0']['dir'];
-      if(empty($_POST['search']['value']))
-      {$query = $db->query("SELECT * FROM $table order by $order $dir LIMIT $limit OFFSET $start");
-      }
-      else {
-          $search = $_POST['search']['value'];
-          $query = $db->query("SELECT * FROM $table WHERE CONCAT(".$tablecoloms.") LIKE '%$search%' order by $order $dir LIMIT $limit OFFSET $start");
-         $querycount = $db->query("SELECT count(*) as jumlah FROM $table WHERE CONCAT(".$tablecoloms.") LIKE '%$search%'");
-       $datacount = $querycount->fetch_array();
-         $totalFiltered = $datacount['jumlah'];
+      $limit = isset($_POST['length']) ? intval($_POST['length']) : 10;
+      $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
+      if ($limit <= 0) $limit = 10;
+      if ($start < 0) $start = 0;
+
+      $order_col_idx = isset($_POST['order'][0]['column']) ? intval($_POST['order'][0]['column']) : 0;
+      $order = isset($line[$order_col_idx]) ? $line[$order_col_idx] : $line[0];
+      // Pastikan nama kolom hanya alphanumeric dan underscore
+      $order = preg_replace('/[^a-zA-Z0-9_]/', '', $order);
+      $dir = (isset($_POST['order'][0]['dir']) && strtolower($_POST['order'][0]['dir']) === 'desc') ? 'DESC' : 'ASC';
+
+      if(empty($_POST['search']['value'])) {
+          $query = $db->query("SELECT * FROM `$table` ORDER BY `$order` $dir LIMIT $limit OFFSET $start");
+      } else {
+          $search = $db->real_escape_string($_POST['search']['value']);
+          $query = $db->query("SELECT * FROM `$table` WHERE CONCAT(".$tablecoloms.") LIKE '%$search%' ORDER BY `$order` $dir LIMIT $limit OFFSET $start");
+          $querycount = $db->query("SELECT count(*) as jumlah FROM `$table` WHERE CONCAT(".$tablecoloms.") LIKE '%$search%'");
+          $datacount = $querycount->fetch_array();
+          $totalFiltered = $datacount['jumlah'];
       }
 
       $data = array();

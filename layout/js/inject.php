@@ -1,13 +1,12 @@
 <?php 
-if(isset($_GET['show']))
-{$show=$_GET['show'];}
-else{$show='yes';}
-$act=$_GET['act'];
+$show = isset($_GET['show']) ? $_GET['show'] : 'yes';
+$act  = isset($_GET['act'])  ? $_GET['act']  : '';
+$module = isset($module) ? $module : (isset($_GET['module']) ? $_GET['module'] : '');
 ?>
 
 <!-- Cek Progress ----------------------- -->
 <script>
-function checkIsOnline(inject, elemToShow, show,act){
+function checkIsOnline(inject, elemToShow, show, act){
 $.ajax({
        url: "loaddatasync.php",
        type: "post",
@@ -19,23 +18,12 @@ $.ajax({
         $("#"+elemToShow).html(response);
        },
        error: function(jqXHR, textStatus, errorThrown) {
-          alert(textStatus, errorThrown);
+          console.error(textStatus, errorThrown);
        }
    });
 }
 setInterval(function(){
 // MENAMPILKAN DATA SYNC lihat File LOADDATASYNC
-<?php
-
-      echo "checkIsOnline('".$module."','data".$act."','".$show."','".$act."');";
-
-?>
-
+checkIsOnline(<?php echo json_encode($module); ?>, <?php echo json_encode('data' . $act); ?>, <?php echo json_encode($show); ?>, <?php echo json_encode($act); ?>);
 }, 2000);
 </script>
-
- <!-- checkIsOnline('mhskeluar','datamhskeluar','<?php echo $show;?>','');
- checkIsOnline('akm','dataakm','<?php echo $show;?>','');
- checkIsOnline('mk','datamk','<?php echo $show;?>','');
- checkIsOnline('<?php echo $module;?>','datamkkurikulum','<?php echo $show;?>','<?php echo $act;?>'); -->
-
